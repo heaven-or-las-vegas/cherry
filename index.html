@@ -96,7 +96,8 @@
               <textarea placeholder="Responder..." id="respuesta-${comentario.id}"></textarea><br/>
               <button onclick="responder('${comentario.id}')">Responder</button>
             `;
-            contenedor.appendChild(div);
+            contenedor.prepend(div);
+
           });
         });
     }
