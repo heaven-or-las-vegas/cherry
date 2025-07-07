@@ -82,23 +82,24 @@
           const contenedor = document.getElementById("comentarios");
           contenedor.innerHTML = "";
           
-          data.reverse(); 
-          data.forEach(comentario => {
-            const div = document.createElement("div");
-            div.className = "comentario";
-            div.innerHTML = `
-              <p>${comentario.texto}</p>
-              ${comentario.respuestas.map(res => `
-                <div class="respuesta">
-                  <p>${res.texto}</p>
-                </div>
-              `).join("")}
-              <textarea placeholder="Responder..." id="respuesta-${comentario.id}"></textarea><br/>
-              <button onclick="responder('${comentario.id}')">Responder</button>
-            `;
-            contenedor.prepend(div);
+          data.reverse(); // Invierte el orden de los comentarios
 
-          });
+          data.forEach(comentario => {
+          const div = document.createElement("div");
+          div.className = "comentario";
+          div.innerHTML = `
+            <p>${comentario.texto}</p>
+            ${comentario.respuestas.map(res => `
+              <div class="respuesta">
+                <p>${res.texto}</p>
+              </div>
+            `).join("")}
+            <textarea placeholder="Responder..." id="respuesta-${comentario.id}"></textarea><br/>
+            <button onclick="responder('${comentario.id}')">Responder</button>
+          `;
+          contenedor.appendChild(div); // 👈 esta es la línea que cambia
+        });
+
         });
     }
 
